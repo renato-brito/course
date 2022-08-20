@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -56,7 +58,11 @@ public class CourseModel implements Serializable {
     private UUID userInstructor;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    //@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) 1 - forma de deletar
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     @Fetch(FetchMode.SUBSELECT)
+    //@OnDelete(action = OnDeleteAction.CASCADE)
+    // 2 - forma de deletar, mas não recomendado para alto volume de dados, já que o banco faz todo o processo de deletar
     private Set<ModuleModel> modules;
+    // 3 - forma de deletar, implementado no método delete da service
 }

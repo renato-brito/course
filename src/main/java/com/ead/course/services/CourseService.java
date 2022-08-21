@@ -12,7 +12,7 @@ public interface CourseService {
 
     CourseModel save(CourseModel courseModel);
 
-    Optional<CourseModel> findById(UUID couserId);
+    Optional<CourseModel> findById(UUID courseId);
 
     List<CourseModel> findAll();
 }

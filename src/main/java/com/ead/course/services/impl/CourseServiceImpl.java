@@ -52,8 +52,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Optional<CourseModel> findById(UUID couserId) {
-        return courseRepository.findById(couserId);
+    public Optional<CourseModel> findById(UUID courseId) {
+        return courseRepository.findById(courseId);
     }
 
     @Override
